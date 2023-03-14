@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <form method="post">
+      <input type="text" id="title" /><br />
+      <input type="text" id="author" /><br />
+      <input type="text" id="text" /><br />
+      <script>
+        async function sendData() {
+          const response = await fetch("", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: document.getElementById("title").innerHTML,
+              author: document.getElementById("author").innerHTML,
+              text: document.getElementById("text").innerHTML,
+            }),
+          });
+        }
+      </script>
+      <input type="submit" onclick="sendData()" />
+    </form>
+  </body>
+</html>
