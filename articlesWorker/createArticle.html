@@ -1,26 +1,30 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
   </head>
   <body>
     <form method="post">
-      <input type="text" id="title" /><br />
-      <input type="text" id="author" /><br />
-      <input type="text" id="text" /><br />
+      <input type="text" id="title" value="My life" /><br />
+      <input type="text" id="author" value="Ruslan" /><br />
+      <input type="text" id="text" value="Dwarf likes a beer." /><br />
       <script>
-        async function sendData() {
-          const response = await fetch("", {
+        function sendData() {
+          const articleJSON = {
+            title: document.getElementById("title").value,
+            author: document.getElementById("author").value,
+            text: document.getElementById("text").value,
+          };
+          fetch("http://127.0.0.1:3000", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              title: document.getElementById("title").innerHTML,
-              author: document.getElementById("author").innerHTML,
-              text: document.getElementById("text").innerHTML,
-            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify(articleJSON),
           });
         }
       </script>
-      <input type="submit" onclick="sendData()" />
+      <input type="button" onclick="sendData()" />
     </form>
   </body>
 </html>
