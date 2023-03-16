@@ -35,7 +35,7 @@ const requestListener = function (req, res) {
       .on("error", (err) => {
         console.error(`Got error: ${err.message}`);
       });
-    fs.readFile("createArticle.html", (err, data) => res.end(data));
+    fs.readFile("./dist/createArticle.html", (err, data) => res.end(data));
   }
   if (req.url.indexOf("/author/") > -1) {
     const idFile = req.url.slice(8);
@@ -44,7 +44,7 @@ const requestListener = function (req, res) {
     buffArticle.forEach(function (el, index) {
       buffArticle[index] = el.slice(12);
     });
-    fs.readFile("getArticle.html", (err, data) => {
+    fs.readFile("./dist/getArticle.html", (err, data) => {
       data = data.toString();
       data = data.replace("$title", `"${buffArticle[0]}"`);
       data = data.replace("$author", `"${buffArticle[1]}"`);
